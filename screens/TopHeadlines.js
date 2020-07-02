@@ -37,7 +37,17 @@ class TopHeadlines extends Component {
           />
         </View>
       ),
+      headerTitle: (props) => <Header title={"Top Headlines"}/>,
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.category !== this.state.category) {
+      this.props.navigation.setOptions({ headerTitle: (props) => <Header title={this.state.category}/> })
+      if (this.state.category !== "Top Headlines")
+        this._fetchNewsCategory(this.state.category);
+      else this._fetchNews();
+    }
   }
 
   _fetchNewsCategory = async (cat) => {
@@ -47,14 +57,6 @@ class TopHeadlines extends Component {
   _fetchNews = async () => {
     this.props.fetchHeadlines();
   };
-
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.category !== this.state.category) {
-      if (this.state.category !== "")
-        this._fetchNewsCategory(this.state.category);
-      else this._fetchNews();
-    }
-  }
 
   render() {
     if (this.props.loading) {
@@ -67,7 +69,7 @@ class TopHeadlines extends Component {
 
     return (
       <View style={styles.container}>
-        <NewsFeed selectNews={this.handleSelectNews} />
+        <NewsFeed selectNews={this.handleSelectNews} dataNews={this.props.dataNews}/>
       </View>
     );
   }
@@ -78,6 +80,11 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: "black",
     flex: 1
+  },
+  titleText: {
+    fontSize: 29,
+    fontWeight: "bold",
+    color: "#0390fc",
   },
 });
 
@@ -92,3 +99,11 @@ const mapStateToProps = (state) => ({
 export default connect(mapStateToProps, { fetchHeadlines, fetchNewsCategory })(
   TopHeadlines
 );
+
+function Header({title}) {
+  return (
+    <View>
+      <Text style={styles.titleText}>{title}</Text>
+    </View>
+  );
+}

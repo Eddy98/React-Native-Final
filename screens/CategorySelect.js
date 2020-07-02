@@ -6,25 +6,25 @@ export default function CategorySelect(props) {
     
   return (
     <ScrollView style={styles.container}>
-      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("")}}>
+      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("Top Headlines")}}>
         <Text style={[styles.category, {color: 'white'}]}>Top Headlines</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("business")}}>
+      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("Business")}}>
         <Text style={[styles.category, {color: 'red'}]}>Business</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("entertainment")}}>
+      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("Entertainment")}}>
         <Text style={[styles.category, {color: 'yellow'}]}>Entertainment</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("health")}}>
+      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("Health")}}>
         <Text style={[styles.category, {color: 'orange'}]}>Health</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("science")}}>
+      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("Science")}}>
         <Text style={[styles.category, {color: 'green'}]}>Science</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("sports")}}>
+      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("Sports")}}>
         <Text style={[styles.category, {color: '#0390fc'}]}>Sports</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("technology")}}>
+      <TouchableOpacity style={styles.categoryContainer} onPress={() => {props.route.params("Technology")}}>
         <Text style={[styles.category, {color: '#9990fc'}]}>Technology</Text>
       </TouchableOpacity>
     </ScrollView>
