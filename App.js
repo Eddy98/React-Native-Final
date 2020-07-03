@@ -1,20 +1,20 @@
-import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { store } from "./redux/store";
-import { Provider } from "react-redux";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { store } from './redux/store'
+import { Provider } from 'react-redux'
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import Ionicons from 'react-native-vector-icons/Ionicons'
 
-import TopHeadlines from "./screens/TopHeadlines";
-import NewsPage from "./screens/NewsPage";
-import CategoryPage from "./screens/CategorySelect";
-import SearchNews from "./screens/SearchNews";
+import TopHeadlines from './screens/TopHeadlines'
+import NewsPage from './screens/NewsPage'
+import CategoryPage from './screens/CategorySelect'
+import SearchNews from './screens/SearchNews'
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 function App() {
   return (
@@ -24,35 +24,35 @@ function App() {
           style={{ margin: 40 }}
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
-              let iconName;
+              let iconName
 
-              if (route.name === "Home") {
+              if (route.name === 'Home') {
                 iconName = focused
-                  ? "ios-information-circle"
-                  : "ios-information-circle-outline";
-              } else if (route.name === "Search") {
-                iconName = focused ? "ios-list-box" : "ios-list";
+                  ? 'ios-information-circle'
+                  : 'ios-information-circle-outline'
+              } else if (route.name === 'Search') {
+                iconName = focused ? 'ios-list-box' : 'ios-list'
               }
 
               // You can return any component that you like here!
-              return <Ionicons name={iconName} size={size} color={color} />;
+              return <Ionicons name={iconName} size={size} color={color} />
             },
           })}
           tabBarOptions={{
-            activeTintColor: "tomato",
-            inactiveTintColor: "gray",
-            activeBackgroundColor: "black",
-            inactiveBackgroundColor: "black",
-            style: {paddingBottom: 0},
-            tabStyle: {paddingBottom: 34}
+            activeTintColor: 'tomato',
+            inactiveTintColor: 'gray',
+            activeBackgroundColor: 'black',
+            inactiveBackgroundColor: 'black',
+            style: { paddingBottom: 0 },
+            tabStyle: { paddingBottom: 34 },
           }}
         >
-          <Tab.Screen name="Home" component={HomeStack} />
-          <Tab.Screen name="Search" component={SearchStack} />
+          <Tab.Screen name='Home' component={HomeStack} />
+          <Tab.Screen name='Search' component={SearchStack} />
         </Tab.Navigator>
       </NavigationContainer>
     </Provider>
-  );
+  )
 }
 
 function HomeStack() {
@@ -60,15 +60,15 @@ function HomeStack() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "black",
+          backgroundColor: 'black',
         },
       }}
     >
-      <Stack.Screen name="Main" component={TopHeadlines} />
-      <Stack.Screen name="News" component={NewsPage} />
-      <Stack.Screen name="Category" component={CategoryPage} />
+      <Stack.Screen name='Main' component={TopHeadlines} />
+      <Stack.Screen name='News' component={NewsPage} />
+      <Stack.Screen name='Category' component={CategoryPage} />
     </Stack.Navigator>
-  );
+  )
 }
 
 function SearchStack() {
@@ -76,81 +76,81 @@ function SearchStack() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          height: 0
+          height: 0,
         },
       }}
     >
-      <Stack.Screen name="Main" component={SearchNews} />
-      <Stack.Screen name="News" component={NewsPage} />
+      <Stack.Screen name='Main' component={SearchNews} />
+      <Stack.Screen name='News' component={NewsPage} />
     </Stack.Navigator>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: 'black',
     paddingTop: 40,
   },
-});
+})
 
-export default App;
+export default App
 
 function MyTabBar({ state, descriptors, navigation }) {
-  const focusedOptions = descriptors[state.routes[state.index].key].options;
+  const focusedOptions = descriptors[state.routes[state.index].key].options
 
   if (focusedOptions.tabBarVisible === false) {
-    return null;
+    return null
   }
 
   return (
-    <View style={{ flexDirection: "row" }}>
+    <View style={{ flexDirection: 'row' }}>
       {state.routes.map((route, index) => {
-        const { options } = descriptors[route.key];
+        const { options } = descriptors[route.key]
         const label =
           options.tabBarLabel !== undefined
             ? options.tabBarLabel
             : options.title !== undefined
             ? options.title
-            : route.name;
+            : route.name
 
-        const isFocused = state.index === index;
+        const isFocused = state.index === index
 
         const onPress = () => {
           const event = navigation.emit({
-            type: "tabPress",
+            type: 'tabPress',
             target: route.key,
             canPreventDefault: true,
-          });
+          })
 
           if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name);
+            navigation.navigate(route.name)
           }
-        };
+        }
 
         const onLongPress = () => {
           navigation.emit({
-            type: "tabLongPress",
+            type: 'tabLongPress',
             target: route.key,
-          });
-        };
+          })
+        }
 
         return (
           <TouchableOpacity
-            accessibilityRole="button"
-            accessibilityStates={isFocused ? ["selected"] : []}
+            accessibilityRole='button'
+            accessibilityStates={isFocused ? ['selected'] : []}
             accessibilityLabel={options.tabBarAccessibilityLabel}
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
             style={{ flex: 1 }}
           >
-            <Text style={{ color: isFocused ? "#673ab7" : "#222" }}>
+            <Text style={{ color: isFocused ? '#673ab7' : '#222' }}>
               {label}
             </Text>
           </TouchableOpacity>
-        );
+        )
       })}
     </View>
-  );
+  )
 }

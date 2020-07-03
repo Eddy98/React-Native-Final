@@ -1,9 +1,8 @@
-import React, { Component } from "react";
-import { ScrollView, Text, Image, StyleSheet } from "react-native";
+import React, { Component } from 'react'
+import { ScrollView, Text, Image, StyleSheet } from 'react-native'
 
 export default class NewsPage extends Component {
   render() {
-
     return (
       <ScrollView style={styles.container}>
         <Image
@@ -17,48 +16,46 @@ export default class NewsPage extends Component {
         <Text style={styles.source}>
           {this.props.route.params.data.source.name}
         </Text>
-        <Text style={styles.author}>
-          {this.props.route.params.data.author}
-        </Text>
+        <Text style={styles.author}>{this.props.route.params.data.author}</Text>
       </ScrollView>
-    );
+    )
   }
 }
 
 const styles = StyleSheet.create({
   image: {
-    width: "100%",
+    width: '100%',
     height: 350,
   },
   container: {
     padding: 18,
-    backgroundColor: "black",
+    backgroundColor: 'black',
     flex: 1,
   },
   title: {
     fontSize: 28,
-    fontWeight: "bold",
-    fontFamily: "Cochin",
-    color: "white",
+    fontWeight: 'bold',
+    fontFamily: 'Cochin',
+    color: 'white',
     paddingTop: 10,
   },
   content: {
-    color: "white",
+    color: 'white',
     fontSize: 15,
     paddingTop: 10,
-    paddingBottom: 13
+    paddingBottom: 13,
   },
   source: {
     fontSize: 18,
-    fontFamily: "American Typewriter",
-    color: "white",
+    fontFamily: 'American Typewriter',
+    color: 'white',
     paddingTop: 10,
   },
   author: {
     fontSize: 16,
-    fontFamily: "American Typewriter",
-    color: "white",
+    fontFamily: 'American Typewriter',
+    color: 'white',
     paddingTop: 10,
-    marginBottom: 70
+    marginBottom: 70,
   },
-});
+})
